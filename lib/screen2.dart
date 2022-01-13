@@ -1,0 +1,291 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class Screen2 extends StatefulWidget
+{
+  Screen2State createState() => Screen2State();
+}
+class Screen2State extends State<Screen2>
+{
+  double w=0, h=0;
+  @override
+  Widget build(BuildContext context) {
+    w=MediaQuery.of(context).size.width;
+    h=MediaQuery.of(context).size.height;
+    print('width = $w and height = $h');
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black38,
+        actions: [
+          Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                    bottomLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(10)
+                ),
+                color: Colors.black12,
+                border: Border.all(color: Colors.white)
+            ),
+            child: IconButton(
+              color: Colors.white,
+              onPressed: null,
+              icon: Icon(Icons.person_outline, color: Colors.white,),
+
+            ),
+          )
+        ],
+      ),
+      body: Container(
+        color: Colors.black54,
+        child: ListView(
+          children: [
+            Container(height: 20),
+            clockDisplay(),
+            Container(height: 20,),
+            textTimeDisplay(),
+            Container(height: 30,),
+            bedAndWakeTimeDisplay(),
+            Container(height: 20,),
+            editSleepScheduleButton()
+          ],
+        ),
+      )
+    );
+  }
+  clockDisplay()
+  {
+    return Container(
+      padding: EdgeInsets.fromLTRB(w/15, 0, w/15, 0),
+      child: Container(
+        padding: EdgeInsets.fromLTRB(w/12, w/12,w/12,w/12),
+        height: h/3+60,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(w/2),
+            color: Colors.black87
+        ),
+        child: halfCircle()
+      ),
+    );
+  }
+  halfCircle()
+  {
+    return Container(
+      padding: EdgeInsets.all(w/10),
+      decoration: BoxDecoration(
+        color: Colors.deepOrange,
+        borderRadius: BorderRadius.circular(w/2),
+      ),
+      child: innerCircle(),
+    );
+  }
+  innerCircle()
+  {
+    return Container(
+      height: 10,
+      padding: EdgeInsets.fromLTRB(15, 0, 0, 0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(w/2+30),
+        color: Colors.black87
+      ),
+      child: Stack(
+        children: [
+          Positioned(child: Text('12 AM', style: TextStyle(color: Colors.white38, fontWeight: FontWeight.bold, fontSize: 16),), top: 0, left: 50,),
+          Positioned(child: Text('2', style: TextStyle(color: Colors.white38, fontWeight: FontWeight.bold, fontSize: 16),), top: 30, left: 110,),
+          Positioned(child: Text('4', style: TextStyle(color: Colors.white38, fontWeight: FontWeight.bold, fontSize: 16),), top: 60, left: 130,),
+          Positioned(child: Text('6 AM', style: TextStyle(color: Colors.white38, fontWeight: FontWeight.bold, fontSize: 16),), top: 90, left: 125,),
+          Positioned(child: Text('8', style: TextStyle(color: Colors.white38, fontWeight: FontWeight.bold, fontSize: 16),), top: 120, left: 130,),
+          Positioned(child: Text('10', style: TextStyle(color: Colors.white38, fontWeight: FontWeight.bold, fontSize: 16),), top: 150, left: 110,),
+          Positioned(child: Text('12 PM', style: TextStyle(color: Colors.white38, fontWeight: FontWeight.bold, fontSize: 16),), bottom: 0, left: 50,),
+          Positioned(child: Text('10', style: TextStyle(color: Colors.white38, fontWeight: FontWeight.bold, fontSize: 16),), top: 30, right: 125,),
+          Positioned(child: Text('8', style: TextStyle(color: Colors.white38, fontWeight: FontWeight.bold, fontSize: 16),), top: 60, right: 145,),
+          Positioned(child: Text('6 PM', style: TextStyle(color: Colors.white38, fontWeight: FontWeight.bold, fontSize: 16),), top: 90, right: 125,),
+          Positioned(child: Text('4', style: TextStyle(color: Colors.white38, fontWeight: FontWeight.bold, fontSize: 16),), top: 120, right: 145,),
+          Positioned(child: Text('2', style: TextStyle(color: Colors.white38, fontWeight: FontWeight.bold, fontSize: 16),), top: 150, right: 125,),
+        ],
+      ),
+    );
+  }
+
+  textTimeDisplay()
+  {
+    return Container(
+      padding: EdgeInsets.fromLTRB(w/24, 0, 0, 0),
+      child: ListTile(
+        title: Center(
+          child: Text(
+            '12 hr 15 min',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 28
+            ),
+          ),
+        ),
+        subtitle: Center(
+          child: Text(
+            'This schedule does not meet your sleep goal',
+            style: TextStyle(
+              color: Colors.white38,
+              fontSize: 12,
+              fontWeight: FontWeight.bold
+            ),
+          ),
+        ),
+      )
+    );
+  }
+  
+  
+  bedAndWakeTimeDisplay()
+  {
+    return Container(
+      padding: EdgeInsets.fromLTRB(w/9, 0, w/9, 0),
+      child: Row(
+        children: [
+          Flexible(child: bedTimeDisplay()),
+          Container(width: 30),
+          Flexible(child: wakeTimeDisplay())
+        ],
+      ),
+    );
+  }
+  bedTimeDisplay()
+  {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(10)
+          )
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: Colors.black87.withOpacity(0.8),
+        //     spreadRadius: 10,
+        //     blurRadius: 5,
+        //     offset: Offset(0,7),
+        //   )
+        // ]
+      ),
+      child: ListTile(
+        title: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(
+              Icons.car_rental_outlined,
+              color: Colors.white54,
+            ),
+            Text('Bedtime', style: TextStyle(
+              color: Colors.white54,
+              fontWeight: FontWeight.bold,
+              fontSize: 16
+            ),),
+            Text(
+              '1:00 AM',
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: 24,
+                fontWeight: FontWeight.bold
+              ),
+            )
+          ],
+        ),
+        subtitle: Text(
+          'Tomorrow',
+          style: TextStyle(
+            fontSize: 12,
+            color: Colors.white54
+          ),
+        ),
+      ),
+    );
+  }
+  wakeTimeDisplay()
+  {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(10)
+          )
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: Colors.black87.withOpacity(0.8),
+        //     spreadRadius: 10,
+        //     blurRadius: 5,
+        //     offset: Offset(0,7),
+        //   )
+        // ]
+      ),
+      child: ListTile(
+        title: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Icon(
+              Icons.doorbell,
+              color: Colors.white54,
+            ),
+            Text('Wake up', style: TextStyle(
+                color: Colors.white54,
+                fontWeight: FontWeight.bold,
+                fontSize: 16
+            ),),
+            Text(
+              '8:15 AM',
+              style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold
+              ),
+            )
+          ],
+        ),
+        subtitle: Text(
+          'Tomorrow',
+          style: TextStyle(
+              fontSize: 12,
+              color: Colors.white54
+          ),
+        ),
+      ),
+    );
+  }
+
+  editSleepScheduleButton()
+  {
+    return Container(
+      // padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+      height: 50,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(10),
+              bottomLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+              topLeft: Radius.circular(10)
+          )
+      ),
+      padding: EdgeInsets.fromLTRB(w/9, 0, w/9, 0),
+      child: RaisedButton(
+        onPressed: null,
+        color: Colors.black54,
+        child: Center(
+          child: Text(
+            'Edit Sleep',
+            style: TextStyle(
+                color: Colors.deepOrange,
+                fontSize: 18,
+                fontWeight: FontWeight.normal
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
