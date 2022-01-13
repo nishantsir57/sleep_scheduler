@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sleep_scheduler/screen2.dart';
 
 class Home extends StatefulWidget
 {
@@ -11,6 +12,7 @@ class HomeState extends State<Home>
   bool switchValue=false;
   var _selectedIndex=1;
   PageController _pageController=PageController();
+  BuildContext? ctx;
 
 
   void onTapped(int index)
@@ -23,6 +25,7 @@ class HomeState extends State<Home>
 
   @override
   Widget build(BuildContext context) {
+    ctx=context;
     w=MediaQuery.of(context).size.width;
     h=MediaQuery.of(context).size.height;
     print(w);
@@ -331,12 +334,11 @@ class HomeState extends State<Home>
             ),
           ),
           child: RaisedButton(
-            onPressed: null,
+            onPressed: ()=>Navigator.push(ctx!, MaterialPageRoute(builder: (ctx) => Screen2() )),
             child: Text(
               'Change',
               style: TextStyle(
                 color: Colors.orangeAccent,
-
               ),
             ),
             color: Colors.black87,
