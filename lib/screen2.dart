@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class Screen2 extends StatefulWidget
 {
@@ -14,44 +14,30 @@ class Screen2State extends State<Screen2>
     h=MediaQuery.of(context).size.height;
     print('width = $w and height = $h');
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black38,
-        actions: [
-          Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)
-                ),
-                color: Colors.black12,
-                border: Border.all(color: Colors.white)
-            ),
-            child: IconButton(
-              color: Colors.white,
-              onPressed: null,
-              icon: Icon(Icons.person_outline, color: Colors.white,),
-
-            ),
-          )
-        ],
-      ),
-      body: Container(
-        color: Colors.black54,
-        child: ListView(
-          children: [
-            Container(height: 20),
-            clockDisplay(),
-            Container(height: 20,),
-            textTimeDisplay(),
-            Container(height: 30,),
-            bedAndWakeTimeDisplay(),
-            Container(height: 20,),
-            editSleepScheduleButton()
+        appBar: NeumorphicAppBar(
+          color: Color.fromARGB(255, 0x27, 0x27, 0x27),
+          actions: [
+            IconButton(onPressed: null, icon: Icon(Icons.person)),
           ],
         ),
-      )
+      body: Container(
+        color: Color.fromARGB(255, 0x27, 0x27, 0x27),
+        child:  ListView(
+      children: [
+      clockDisplay(),
+      Container(height: 20,),
+      textTimeDisplay(),
+      Container(height: 30,),
+      bedAndWakeTimeDisplay(),
+      Container(height: 20,),
+      Container(padding: EdgeInsets.all(20), child: editSleepScheduleButton(),)
+      ],
+    ),
+      ),
+      // Container(
+      //   color: Colors.black54,
+
+      // )
     );
   }
   clockDisplay()
@@ -74,7 +60,7 @@ class Screen2State extends State<Screen2>
     return Container(
       padding: EdgeInsets.all(w/10),
       decoration: BoxDecoration(
-        color: Colors.deepOrange,
+        color: Color.fromARGB(255, 0xf3, 0x85, 0x50),
         borderRadius: BorderRadius.circular(w/2),
       ),
       child: innerCircle(),
@@ -117,7 +103,7 @@ class Screen2State extends State<Screen2>
           child: Text(
             '12 hr 15 min',
             style: TextStyle(
-              color: Colors.white,
+              color: Color.fromARGB(255, 0xfa, 0xfa, 0xfa),
               fontWeight: FontWeight.bold,
               fontSize: 28
             ),
@@ -153,23 +139,16 @@ class Screen2State extends State<Screen2>
   }
   bedTimeDisplay()
   {
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10)
-          )
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.black87.withOpacity(0.8),
-        //     spreadRadius: 10,
-        //     blurRadius: 5,
-        //     offset: Offset(0,7),
-        //   )
-        // ]
+    return Neumorphic(
+      style: NeumorphicStyle(
+        shape: NeumorphicShape.concave,
+        shadowLightColor: Color.fromARGB(255, 0x19, 0x19, 0x19),
+        shadowDarkColorEmboss: Color.fromARGB(255, 0x19, 0x19, 0x19),
+          color: Color.fromARGB(255, 0x18, 0x18, 0x18),
+        disableDepth: false,
+        depth: 300,
+        boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
+        surfaceIntensity: -100,
       ),
       child: ListTile(
         title: Column(
@@ -206,23 +185,16 @@ class Screen2State extends State<Screen2>
   }
   wakeTimeDisplay()
   {
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-              bottomRight: Radius.circular(10)
-          )
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.black87.withOpacity(0.8),
-        //     spreadRadius: 10,
-        //     blurRadius: 5,
-        //     offset: Offset(0,7),
-        //   )
-        // ]
+    return Neumorphic(
+      style: NeumorphicStyle(
+        shape: NeumorphicShape.concave,
+        shadowLightColor: Color.fromARGB(255, 0x19, 0x19, 0x19),
+        shadowDarkColorEmboss: Color.fromARGB(255, 0x19, 0x19, 0x19),
+        color: Color.fromARGB(255, 0x18, 0x18, 0x18),
+        disableDepth: false,
+        depth: 300,
+        boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
+        surfaceIntensity: -100,
       ),
       child: ListTile(
         title: Column(
@@ -260,26 +232,39 @@ class Screen2State extends State<Screen2>
 
   editSleepScheduleButton()
   {
-    return Container(
-      // padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
-      height: 50,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-              topLeft: Radius.circular(10)
-          )
+    return Neumorphic(
+      // padding: EdgeInsets.,
+      style:  NeumorphicStyle(
+        shape: NeumorphicShape.concave,
+        shadowLightColor: Color.fromARGB(255, 0x19, 0x19, 0x19),
+        shadowDarkColorEmboss: Color.fromARGB(255, 0x19, 0x19, 0x19),
+        color: Color.fromARGB(255, 0x18, 0x18, 0x18),
+        disableDepth: false,
+        depth: 300,
+        boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
+        surfaceIntensity: -100,
       ),
-      padding: EdgeInsets.fromLTRB(w/9, 0, w/9, 0),
-      child: RaisedButton(
+      // padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
+      // padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+      child: NeumorphicButton(
+        padding: EdgeInsets.all(15),
+        style:  NeumorphicStyle(
+          shape: NeumorphicShape.concave,
+          shadowLightColor: Color.fromARGB(255, 0x19, 0x19, 0x19),
+          shadowDarkColorEmboss: Color.fromARGB(255, 0x19, 0x19, 0x19),
+          color: Color.fromARGB(255, 0x18, 0x18, 0x18),
+          disableDepth: false,
+          depth: 300,
+          boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(20)),
+          surfaceIntensity: -100,
+        ),
         onPressed: null,
-        color: Colors.black54,
+        // color: Colors.black54,
         child: Center(
           child: Text(
             'Edit Sleep',
             style: TextStyle(
-                color: Colors.deepOrange,
+                color: Color.fromARGB(255, 0xb6, 0x66, 0x41),
                 fontSize: 18,
                 fontWeight: FontWeight.normal
             ),
